@@ -80,7 +80,6 @@ const addImageMessage = async (req, res, next) => {
       const date = Date.now();
       let fileName = "uploads/images/" + date + req.file.originalname;
 
-      console.log("fileName :>> ", fileName);
 
       renameSync(req.file.path, fileName);
       const prisma = getPrismaInstance();
@@ -106,7 +105,7 @@ const addImageMessage = async (req, res, next) => {
 };
 
 const addAudioMessage = async (req, res, next) => {
-  console.log("yes");
+
   try {
     if (req.file) {
       const date = Date.now();
@@ -165,7 +164,6 @@ const getInitialContactWithMessage = async (req, res, next) => {
       },
     });
 
-    console.log("users", user);
 
     const message = [...user.sentMessage, ...user.receivedMessage];
     message.sort((a, b) => b.createdAt?.getTime() - a.createAt?.getTime());
